@@ -60,7 +60,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 @keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 .prev-hearts-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
 
-/* Watermark — preview only */
+/* Watermark */
 .watermark{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:50;pointer-events:none;opacity:.10;}
 .watermark span{font-family:'Playfair Display',serif;font-size:clamp(1rem,4vw,2rem);color:#fff;transform:rotate(-30deg);white-space:nowrap;}
 
@@ -81,8 +81,30 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 .yes-btn:hover,.yes-btn:active{transform:scale(1.08);}
 .no-btn{padding:.9em 2.5em;font-size:1.15rem;font-weight:600;border:none;border-radius:50px;cursor:pointer;background:rgba(255,255,255,.25);color:#fff;border:2px solid rgba(255,255,255,.6);backdrop-filter:blur(4px);position:fixed;z-index:200;transition:left .12s,top .12s;}
 
-/* Sarcasm toast */
-#sarcasmToast{position:fixed;bottom:130px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.97);color:var(--deep);padding:.65rem 1.3rem;border-radius:50px;font-size:.9rem;font-weight:600;box-shadow:0 8px 30px rgba(196,69,105,.4);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;white-space:nowrap;max-width:88vw;text-align:center;}
+/* Sarcasm toast — FIXED: solid bg, dark readable text, good font */
+#sarcasmToast{
+  position:fixed;
+  bottom:130px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#2d1b2e;
+  color:#fff;
+  padding:.75rem 1.4rem;
+  border-radius:50px;
+  font-family:'DM Sans',sans-serif;
+  font-size:.95rem;
+  font-weight:500;
+  letter-spacing:.01em;
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
+  z-index:300;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s;
+  white-space:nowrap;
+  max-width:88vw;
+  text-align:center;
+  border:1.5px solid rgba(255,107,157,.4);
+}
 #sarcasmToast.show{opacity:1;}
 
 /* Celeb screen */
@@ -91,42 +113,59 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 @keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-12px);}60%{transform:translateY(-6px);}}
 .celeb-msg{font-size:clamp(.88rem,2.5vw,1.05rem);color:rgba(255,255,255,.95);max-width:480px;line-height:1.6;padding:0 .5rem;}
 
-/* Big centered GIF */
-.gif-box{width:min(280px,75vw);height:min(280px,75vw);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35);flex-shrink:0;animation:glow 2s infinite alternate;}
+/* GIF slideshow */
+.gif-box{width:min(280px,75vw);height:min(280px,75vw);border-radius:20px;overflow:hidden;flex-shrink:0;animation:glow 2s infinite alternate;position:relative;}
 @keyframes glow{from{box-shadow:0 20px 50px rgba(255,105,180,.5);}to{box-shadow:0 20px 70px rgba(255,20,147,.8);}}
-.gif-box img{width:100%;height:100%;object-fit:cover;display:block;}
+.gif-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .6s ease;}
+.gif-slide.active{opacity:1;}
 
-/* Confetti — slow, sparse, cute */
+/* Confetti */
 .confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:20;}
 .cele-heart{position:absolute;animation:confettiUp linear infinite;}
 @keyframes confettiUp{0%{transform:translateY(100vh) rotate(0deg);opacity:1;}100%{transform:translateY(-50px) rotate(720deg);opacity:0;}}
 
-/* Bottom strip — thin, subtle */
+/* Bottom strip */
 #bottomStrip{position:absolute;bottom:0;left:0;right:0;z-index:70;padding:.9rem 1.2rem max(1rem,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:.7rem;align-items:center;}
 
 /* Small generate link button */
 .gen-link-btn{padding:.65em 1.8em;border:none;border-radius:50px;background:rgba(255,255,255,.92);color:var(--deep);font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:all .2s;display:inline-flex;align-items:center;gap:.4em;}
 .gen-link-btn:hover{background:#fff;transform:translateY(-1px);}
 
-/* Link box — inline small */
-#linkBox{display:none;background:rgba(255,255,255,.95);border-radius:16px;padding:.9rem 1.2rem;text-align:center;width:100%;max-width:380px;}
-.link-title{font-weight:700;color:var(--text);font-size:.95rem;margin-bottom:.4rem;}
-.link-url{background:#fff5f8;border:1.5px solid #ffd6e7;border-radius:10px;padding:.5rem .8rem;font-size:.78rem;color:var(--deep);word-break:break-all;margin:.4rem 0;}
-.copy-link-btn{padding:.55rem 1.3rem;background:var(--pink);color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:.88rem;}
+/* Link box */
+#linkBox{display:none;background:rgba(255,255,255,.97);border-radius:16px;padding:.85rem 1rem;text-align:center;width:100%;max-width:360px;}
+.link-title{font-weight:700;color:var(--text);font-size:.88rem;margin-bottom:.35rem;}
+.link-url{background:#fff5f8;border:1.5px solid #ffd6e7;border-radius:10px;padding:.45rem .75rem;font-size:.75rem;color:var(--deep);word-break:break-all;margin:.3rem 0 .6rem;}
+.link-btns{display:flex;gap:.5rem;justify-content:center;}
+.copy-link-btn{padding:.5rem 1.1rem;background:var(--pink);color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:.85rem;flex:1;}
+.wa-btn{padding:.5rem 1.1rem;background:#25D366;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;gap:.3em;flex:1;}
 
-/* Pay panel — slide up sheet */
-#panelOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:190;}
-#payPanel{display:none;background:#fff;border-radius:22px 22px 0 0;padding:1.5rem 1.5rem max(1.5rem,env(safe-area-inset-bottom));position:fixed;bottom:0;left:0;right:0;z-index:200;box-shadow:0 -8px 40px rgba(196,69,105,.25);animation:slideUp .3s ease;}
-@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-.panel-title{font-weight:700;color:var(--text);font-size:1rem;margin-bottom:1rem;text-align:center;}
-.panel-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted);}
-.pay-row{display:flex;gap:.6rem;align-items:center;margin-bottom:.4rem;}
-.coupon-input{flex:1;padding:.65rem .9rem;border:1.5px solid #f0d6e0;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text);background:#fffafb;outline:none;}
+/* Pay panel — compact floating card, not full-width sheet */
+#panelOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:190;}
+#payPanel{
+  display:none;
+  background:#fff;
+  border-radius:20px;
+  padding:1.25rem 1.25rem 1.1rem;
+  position:fixed;
+  bottom:max(1.2rem,env(safe-area-inset-bottom));
+  left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 2.4rem);
+  max-width:360px;
+  z-index:200;
+  box-shadow:0 8px 40px rgba(196,69,105,.3);
+  animation:slideUp .25s ease;
+}
+@keyframes slideUp{from{transform:translateX(-50%) translateY(20px);opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
+.panel-title{font-weight:700;color:var(--text);font-size:.95rem;margin-bottom:.85rem;text-align:center;padding-right:1.5rem;}
+.panel-close{position:absolute;top:.85rem;right:.9rem;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--muted);line-height:1;}
+.pay-row{display:flex;gap:.5rem;align-items:center;margin-bottom:.35rem;}
+.coupon-input{flex:1;padding:.6rem .85rem;border:1.5px solid #f0d6e0;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--text);background:#fffafb;outline:none;text-transform:uppercase;}
 .coupon-input:focus{border-color:var(--pink);}
-.apply-btn{padding:.65rem 1rem;background:var(--deep);color:#fff;border:none;border-radius:10px;font-weight:600;font-size:.85rem;cursor:pointer;white-space:nowrap;}
-.coupon-msg{font-size:.8rem;min-height:1.1em;margin-bottom:.4rem;}
+.apply-btn{padding:.6rem .9rem;background:var(--deep);color:#fff;border:none;border-radius:10px;font-weight:600;font-size:.82rem;cursor:pointer;white-space:nowrap;}
+.coupon-msg{font-size:.78rem;min-height:1em;margin-bottom:.35rem;}
 .coupon-msg.ok{color:#1a8a4a;}.coupon-msg.err{color:#c0392b;}
-.pay-btn{width:100%;padding:1rem;border:none;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--deep));color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(196,69,105,.5);}
+.pay-btn{width:100%;padding:.85rem;border:none;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--deep));color:#fff;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 5px 16px rgba(196,69,105,.45);}
 
 /* Burst hearts */
 .burst-heart{position:fixed;font-size:28px;z-index:400;animation:burstOut 1.5s ease-out forwards;pointer-events:none;}
@@ -188,11 +227,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
   </div>
 </div>
 
-<!-- EXPERIENCE PAGE (preview + recipient) -->
+<!-- EXPERIENCE PAGE -->
 <div id="expPage">
   <div class="prev-hearts-bg" id="prevHeartsBg"></div>
 
-  <!-- Watermark: only shown in preview mode -->
   <div class="watermark" id="watermarkEl">
     <span>PREVIEW · mylovepage.in · PREVIEW · mylovepage.in · PREVIEW</span>
   </div>
@@ -204,7 +242,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
   </div>
 
   <div id="expContent">
-    <!-- Question screen -->
     <div id="questionScreen">
       <h1 class="exp-title" id="expTitle">Will you be my girlfriend?
 Aasthaaaa 💖</h1>
@@ -215,26 +252,33 @@ Aasthaaaa 💖</h1>
       </div>
     </div>
 
-    <!-- Celebration screen -->
     <div id="celebScreen">
       <h1 class="celeb-title">Yay! I knew you'd say YES! ❤️</h1>
       <p class="celeb-msg" id="celebMsg">You're the best thing that's ever happened to me. 🌹</p>
-      <div class="gif-box">
-        <img id="celebGif" src="" alt="celebration">
+      <div class="gif-box" id="gifBox">
+        <!-- Set data-duration to each GIF's actual loop length in milliseconds -->
+        <img class="gif-slide active" src="gif1.gif" data-duration="3000" alt="celebration 1">
+        <img class="gif-slide" src="gif2.gif" data-duration="3000" alt="celebration 2">
+        <img class="gif-slide" src="gif3.gif" data-duration="3000" alt="celebration 3">
+        <img class="gif-slide" src="gif4.gif" data-duration="3000" alt="celebration 4">
+        <img class="gif-slide" src="gif5.gif" data-duration="3000" alt="celebration 5">
       </div>
       <div class="confetti-layer" id="confettiLayer"></div>
     </div>
   </div>
 
-  <!-- Bottom strip -->
   <div id="bottomStrip">
-    <!-- Preview mode: small generate button -->
     <button class="gen-link-btn" id="generateLinkBtn">💌 Generate Shareable Link</button>
-    <!-- After payment: link box -->
     <div id="linkBox">
       <p class="link-title">🎉 Your link is ready — share it!</p>
       <div class="link-url" id="linkUrl">mylovepage.in/...</div>
-      <button class="copy-link-btn" id="copyLinkBtn">Copy Link 📋</button>
+      <div class="link-btns">
+        <button class="copy-link-btn" id="copyLinkBtn">Copy 📋</button>
+        <button class="wa-btn" id="waShareBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -242,13 +286,13 @@ Aasthaaaa 💖</h1>
 <!-- Sarcasm toast -->
 <div id="sarcasmToast"></div>
 
-<!-- Pay panel overlay + sheet -->
+<!-- Pay panel -->
 <div id="panelOverlay" onclick="closePayPanel()"></div>
 <div id="payPanel">
   <button class="panel-close" onclick="closePayPanel()">✕</button>
   <p class="panel-title">💌 Unlock & Share — ₹99</p>
   <div class="pay-row">
-    <input type="text" class="coupon-input" id="couponInput" placeholder="Coupon code (optional)">
+    <input type="text" class="coupon-input" id="couponInput" placeholder="Coupon code (optional)" autocapitalize="characters" autocomplete="off" spellcheck="false">
     <button class="apply-btn" id="applyCoupon">Apply</button>
   </div>
   <p class="coupon-msg" id="couponMsg"></p>
@@ -329,11 +373,23 @@ document.getElementById('muteBtnPrev').addEventListener('click',()=>{
   document.getElementById('muteBtnPrev').textContent=muted?'🔇':'🔊';
 });
 
-// ============================================================
-// COUPON
-// ============================================================
-const COUPONS={'FREE100':{discount:100,label:'FREE100 — 100% off!'},'LOVE20':{discount:20,label:'LOVE20 — ₹20 off'}};
+// Auto-uppercase coupon as user types
+document.getElementById('couponInput').addEventListener('input',function(){
+  const pos=this.selectionStart;
+  this.value=this.value.toUpperCase();
+  this.setSelectionRange(pos,pos);
+});
+
+
+const COUPONS={
+  'FREE100': {discount:100, label:'FREE100 — 100% off! 🎉'},
+  'LOVE20':  {discount:20,  label:'LOVE20 — ₹20 off'},
+  'FREE':    {discount:99,  label:'FREE — it\'s on us! 💕'},
+  'RS1':     {discount:98,  label:'RS1 — just ₹1! 🥺'},
+  'RS79':    {discount:20,  label:'RS79 — ₹20 off'}
+};
 let appliedDiscount=0, basePrice=99;
+
 document.getElementById('applyCoupon').addEventListener('click',()=>{
   const code=document.getElementById('couponInput').value.trim().toUpperCase();
   const msg=document.getElementById('couponMsg');
@@ -352,7 +408,7 @@ document.getElementById('applyCoupon').addEventListener('click',()=>{
 });
 
 // ============================================================
-// ENCODE / DECODE page data in URL (no backend needed!)
+// ENCODE / DECODE
 // ============================================================
 function encodePageData(data){
   return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
@@ -374,11 +430,8 @@ function launchExperience(data, recipientMode){
   document.getElementById('expSubMsg').textContent='From: '+data.fromName+' 💌';
   document.getElementById('celebMsg').textContent=data.msg+' ~'+data.fromName;
 
-  // GIF
-  const gifEl=document.getElementById('celebGif');
-  gifEl.src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTMwNm1vMDIzYmxrMjRjb2hqM3MwOTJ4M2ZlanltbTh1bG9idDZtYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif';
+  // gif slideshow starts when Yes is clicked — nothing to set here
 
-  // Reset UI state
   document.getElementById('questionScreen').style.display='block';
   document.getElementById('celebScreen').style.display='none';
   document.getElementById('confettiLayer').innerHTML='';
@@ -389,28 +442,21 @@ function launchExperience(data, recipientMode){
   const nb=document.getElementById('noBtnExp');
   nb.style.left=''; nb.style.top='';
 
-  // Watermark: only in preview
   document.getElementById('watermarkEl').style.display=isRecipientMode?'none':'flex';
-
-  // Back button: only in preview
   document.getElementById('backBtnPrev').style.display=isRecipientMode?'none':'block';
-
-  // Generate link button: only in preview
   document.getElementById('generateLinkBtn').style.display=isRecipientMode?'none':'inline-flex';
 
-  // Show page
   document.getElementById('formPage').style.display='none';
   document.getElementById('expPage').style.display='flex';
   bgMusic.play().catch(()=>{});
 
-  // Hearts
   const phb=document.getElementById('prevHeartsBg');
   phb.innerHTML='';
   setInterval(()=>spawnHeart(phb),400);
 }
 
 // ============================================================
-// CHECK URL FOR RECIPIENT MODE ON LOAD
+// CHECK URL ON LOAD
 // ============================================================
 window.addEventListener('DOMContentLoaded',()=>{
   const params=new URLSearchParams(window.location.search);
@@ -432,9 +478,7 @@ document.getElementById('previewBtn').addEventListener('click',()=>{
   if(question==='custom') question=document.getElementById('customQ').value.trim()||'Will you be mine?';
   const msg=document.getElementById('yourMsg').value.trim()||"You're the most amazing person I know. I love you endlessly. 💕";
 
-  // Store for link generation
   window._pageData={theirName,fromName,question,msg};
-
   launchExperience(window._pageData, false);
 });
 
@@ -445,11 +489,12 @@ document.getElementById('backBtnPrev').addEventListener('click',()=>{
   document.getElementById('expPage').style.display='none';
   document.getElementById('formPage').style.display='flex';
   bgMusic.pause(); bgMusic.currentTime=0;
+  clearTimeout(gifTimer);
   closePayPanel();
 });
 
 // ============================================================
-// NO BUTTON — runs away + sarcasm
+// NO BUTTON
 // ============================================================
 const noBtn=document.getElementById('noBtnExp');
 function runNoBtn(){
@@ -466,15 +511,37 @@ noBtn.addEventListener('click',(e)=>{e.preventDefault();runNoBtn();});
 // ============================================================
 // YES BUTTON
 // ============================================================
+let gifTimer=null;
 document.getElementById('yesBtnExp').addEventListener('click',()=>{
   document.getElementById('questionScreen').style.display='none';
   const cs=document.getElementById('celebScreen');
   cs.style.display='flex'; cs.style.flexDirection='column'; cs.style.alignItems='center';
   buildConfetti();
+  startGifSlideshow();
 });
 
+function startGifSlideshow(){
+  clearTimeout(gifTimer);
+  const slides=Array.from(document.querySelectorAll('.gif-slide'));
+  let idx=0;
+
+  function showNext(){
+    slides[idx].classList.remove('active');
+    idx=(idx+1)%slides.length;
+    slides[idx].classList.add('active');
+    const dur=parseInt(slides[idx].dataset.duration)||3000;
+    gifTimer=setTimeout(showNext, dur);
+  }
+
+  // start: show first slide for its own duration
+  slides.forEach(s=>s.classList.remove('active'));
+  slides[0].classList.add('active');
+  const firstDur=parseInt(slides[0].dataset.duration)||3000;
+  gifTimer=setTimeout(showNext, firstDur);
+}
+
 // ============================================================
-// CONFETTI — cute, slow, sparse
+// CONFETTI
 // ============================================================
 function buildConfetti(){
   const layer=document.getElementById('confettiLayer');
@@ -493,7 +560,7 @@ function buildConfetti(){
 }
 
 // ============================================================
-// GENERATE LINK → open pay panel
+// GENERATE LINK → pay panel
 // ============================================================
 document.getElementById('generateLinkBtn').addEventListener('click',openPayPanel);
 function openPayPanel(){
@@ -529,7 +596,6 @@ document.getElementById('payBtn').addEventListener('click',()=>{
 
 function onPaymentSuccess(paymentId){
   closePayPanel();
-  // Build the recipient link — all data encoded in URL, zero backend
   const data=window._pageData||{theirName:'someone',fromName:'someone',question:'Will you be mine?',msg:'I love you 💕'};
   const encoded=encodePageData(data);
   const link=window.location.origin+window.location.pathname+'?d='+encoded;
@@ -560,18 +626,28 @@ function burstConfetti(){
 }
 
 // ============================================================
+// WHATSAPP SHARE
+// ============================================================
+document.getElementById('waShareBtn').addEventListener('click',()=>{
+  const url=document.getElementById('linkUrl').textContent;
+  const theirName=(window._pageData&&window._pageData.theirName)||'someone special';
+  const text=`Hey ${theirName}, I made something just for you 💕\n${url}`;
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+});
+
+// ============================================================
 // COPY LINK
 // ============================================================
 document.getElementById('copyLinkBtn').addEventListener('click',()=>{
   const url=document.getElementById('linkUrl').textContent;
   const btn=document.getElementById('copyLinkBtn');
   navigator.clipboard.writeText(url).then(()=>{
-    btn.textContent='Copied! ✓'; setTimeout(()=>{btn.textContent='Copy Link 📋';},2000);
+    btn.textContent='Copied! ✓'; setTimeout(()=>{btn.textContent='Copy 📋';},2000);
   }).catch(()=>{
     const ta=document.createElement('textarea');
     ta.value=url; document.body.appendChild(ta); ta.select();
     document.execCommand('copy'); document.body.removeChild(ta);
-    btn.textContent='Copied! ✓'; setTimeout(()=>{btn.textContent='Copy Link 📋';},2000);
+    btn.textContent='Copied! ✓'; setTimeout(()=>{btn.textContent='Copy 📋';},2000);
   });
 });
 </script>
