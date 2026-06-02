@@ -81,31 +81,35 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 .yes-btn:hover,.yes-btn:active{transform:scale(1.08);}
 .no-btn{padding:.9em 2.5em;font-size:1.15rem;font-weight:600;border:none;border-radius:50px;cursor:pointer;background:rgba(255,255,255,.25);color:#fff;border:2px solid rgba(255,255,255,.6);backdrop-filter:blur(4px);position:fixed;z-index:200;transition:left .12s,top .12s;}
 
-/* Sarcasm toast — FIXED: solid bg, dark readable text, good font */
+/* Sarcasm toast — glassy pink, matches the gradient bg */
 #sarcasmToast{
   position:fixed;
   bottom:130px;
   left:50%;
-  transform:translateX(-50%);
-  background:#2d1b2e;
+  transform:translateX(-50%) translateY(8px);
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(16px) saturate(1.8);
+  -webkit-backdrop-filter:blur(16px) saturate(1.8);
   color:#fff;
-  padding:.75rem 1.4rem;
+  padding:.7rem 1.4rem;
   border-radius:50px;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Playfair Display',serif;
+  font-style:italic;
   font-size:.95rem;
-  font-weight:500;
+  font-weight:700;
   letter-spacing:.01em;
-  box-shadow:0 8px 30px rgba(0,0,0,.35);
+  border:1.5px solid rgba(255,255,255,.35);
+  box-shadow:0 8px 32px rgba(196,69,105,.25), inset 0 1px 0 rgba(255,255,255,.3);
   z-index:300;
   opacity:0;
   pointer-events:none;
-  transition:opacity .3s;
+  transition:opacity .3s ease, transform .3s ease;
   white-space:nowrap;
   max-width:88vw;
   text-align:center;
-  border:1.5px solid rgba(255,107,157,.4);
+  text-shadow:0 1px 8px rgba(196,69,105,.4);
 }
-#sarcasmToast.show{opacity:1;}
+#sarcasmToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
 /* Celeb screen */
 #celebScreen{display:none;flex-direction:column;align-items:center;width:100%;gap:.9rem;}
@@ -113,11 +117,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 @keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-12px);}60%{transform:translateY(-6px);}}
 .celeb-msg{font-size:clamp(.88rem,2.5vw,1.05rem);color:rgba(255,255,255,.95);max-width:480px;line-height:1.6;padding:0 .5rem;}
 
-/* GIF slideshow */
-.gif-box{width:min(280px,75vw);height:min(280px,75vw);border-radius:20px;overflow:hidden;flex-shrink:0;animation:glow 2s infinite alternate;position:relative;}
+/* GIF */
+.gif-box{width:min(280px,75vw);height:min(280px,75vw);border-radius:20px;overflow:hidden;flex-shrink:0;animation:glow 2s infinite alternate;}
 @keyframes glow{from{box-shadow:0 20px 50px rgba(255,105,180,.5);}to{box-shadow:0 20px 70px rgba(255,20,147,.8);}}
-.gif-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .6s ease;}
-.gif-slide.active{opacity:1;}
+.gif-box img{width:100%;height:100%;object-fit:cover;display:block;}
 
 /* Confetti */
 .confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:20;}
@@ -255,13 +258,8 @@ Aasthaaaa 💖</h1>
     <div id="celebScreen">
       <h1 class="celeb-title">Yay! I knew you'd say YES! ❤️</h1>
       <p class="celeb-msg" id="celebMsg">You're the best thing that's ever happened to me. 🌹</p>
-      <div class="gif-box" id="gifBox">
-        <!-- Set data-duration to each GIF's actual loop length in milliseconds -->
-        <img class="gif-slide active" src="gif1.gif" data-duration="3000" alt="celebration 1">
-        <img class="gif-slide" src="gif2.gif" data-duration="3000" alt="celebration 2">
-        <img class="gif-slide" src="gif3.gif" data-duration="3000" alt="celebration 3">
-        <img class="gif-slide" src="gif4.gif" data-duration="3000" alt="celebration 4">
-        <img class="gif-slide" src="gif5.gif" data-duration="3000" alt="celebration 5">
+      <div class="gif-box">
+        <img src="gif1.webp" alt="celebration">
       </div>
       <div class="confetti-layer" id="confettiLayer"></div>
     </div>
@@ -382,11 +380,11 @@ document.getElementById('couponInput').addEventListener('input',function(){
 
 
 const COUPONS={
-  
+  'FREE100': {discount:100, label:'FREE100 — 100% off! 🎉'},
   'LOVE20':  {discount:20,  label:'LOVE20 — ₹20 off'},
-  'FEIN':    {discount:99,  label:'FREE — it\'s on us! 💕'},
-  'UMM1':     {discount:98,  label:'RS1 — just ₹1! 🥺'},
-  'LOVE':    {discount:20,  label:'RS79 — ₹20 off'}
+  'FREE':    {discount:99,  label:'FREE — it\'s on us! 💕'},
+  'RS1':     {discount:98,  label:'RS1 — just ₹1! 🥺'},
+  'RS79':    {discount:20,  label:'RS79 — ₹20 off'}
 };
 let appliedDiscount=0, basePrice=99;
 
@@ -489,7 +487,6 @@ document.getElementById('backBtnPrev').addEventListener('click',()=>{
   document.getElementById('expPage').style.display='none';
   document.getElementById('formPage').style.display='flex';
   bgMusic.pause(); bgMusic.currentTime=0;
-  clearTimeout(gifTimer);
   closePayPanel();
 });
 
@@ -511,34 +508,12 @@ noBtn.addEventListener('click',(e)=>{e.preventDefault();runNoBtn();});
 // ============================================================
 // YES BUTTON
 // ============================================================
-let gifTimer=null;
 document.getElementById('yesBtnExp').addEventListener('click',()=>{
   document.getElementById('questionScreen').style.display='none';
   const cs=document.getElementById('celebScreen');
   cs.style.display='flex'; cs.style.flexDirection='column'; cs.style.alignItems='center';
   buildConfetti();
-  startGifSlideshow();
 });
-
-function startGifSlideshow(){
-  clearTimeout(gifTimer);
-  const slides=Array.from(document.querySelectorAll('.gif-slide'));
-  let idx=0;
-
-  function showNext(){
-    slides[idx].classList.remove('active');
-    idx=(idx+1)%slides.length;
-    slides[idx].classList.add('active');
-    const dur=parseInt(slides[idx].dataset.duration)||3000;
-    gifTimer=setTimeout(showNext, dur);
-  }
-
-  // start: show first slide for its own duration
-  slides.forEach(s=>s.classList.remove('active'));
-  slides[0].classList.add('active');
-  const firstDur=parseInt(slides[0].dataset.duration)||3000;
-  gifTimer=setTimeout(showNext, firstDur);
-}
 
 // ============================================================
 // CONFETTI
