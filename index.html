@@ -19,6 +19,7 @@
 html,body{height:100%;overflow-x:hidden;}
 body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 
+
 /* HEARTS BG */
 .hearts-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .hb{position:absolute;animation:floatUp linear infinite;opacity:0;}
@@ -27,6 +28,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
   10%{opacity:.6;}90%{opacity:.3;}
   100%{transform:translateY(-10vh) rotate(360deg);opacity:0;}
 }
+
 
 /* FORM PAGE */
 #formPage{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;}
@@ -55,22 +57,27 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 .preview-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(196,69,105,.5);}
 .preview-btn:active{transform:scale(.98);}
 
+
 /* EXPERIENCE PAGE */
 #expPage{display:none;position:fixed;inset:0;z-index:100;background:linear-gradient(45deg,#ff6b9d,#c44569,#f8b500,#ff9ff3);background-size:400% 400%;animation:gradientShift 15s ease infinite;flex-direction:column;overflow:hidden;}
 @keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 .prev-hearts-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
 
+
 /* Watermark */
 .watermark{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:50;pointer-events:none;opacity:.10;}
 .watermark span{font-family:'Playfair Display',serif;font-size:clamp(1rem,4vw,2rem);color:#fff;transform:rotate(-30deg);white-space:nowrap;}
+
 
 /* Top controls */
 .top-controls{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;z-index:60;}
 .back-btn-prev{background:rgba(255,255,255,.9);border:none;padding:.45em 1em;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--deep);cursor:pointer;}
 .mute-btn{background:rgba(255,255,255,.9);border:none;padding:.45em .8em;border-radius:50px;font-size:.9rem;cursor:pointer;}
 
+
 /* Main content */
 #expContent{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 1.5rem 7rem;text-align:center;overflow-y:auto;}
+
 
 /* Question screen */
 .exp-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,6vw,3rem);color:#fff;text-shadow:0 0 30px rgba(255,105,180,.6);margin-bottom:1rem;animation:pulse 2s infinite;white-space:pre-line;}
@@ -80,6 +87,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 .yes-btn{padding:.9em 2.5em;font-size:1.15rem;font-weight:600;border:none;border-radius:50px;cursor:pointer;background:linear-gradient(45deg,#ff69b4,#ff1493);color:#fff;box-shadow:0 10px 30px rgba(255,20,147,.5);transition:all .3s;position:relative;z-index:2;}
 .yes-btn:hover,.yes-btn:active{transform:scale(1.08);}
 .no-btn{padding:.9em 2.5em;font-size:1.15rem;font-weight:600;border:none;border-radius:50px;cursor:pointer;background:rgba(255,255,255,.25);color:#fff;border:2px solid rgba(255,255,255,.6);backdrop-filter:blur(4px);position:fixed;z-index:200;transition:left .12s,top .12s;}
+
 
 /* Sarcasm toast — glassy pink, matches the gradient bg */
 #sarcasmToast{
@@ -111,28 +119,34 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 }
 #sarcasmToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
+
 /* Celeb screen */
 #celebScreen{display:none;flex-direction:column;align-items:center;width:100%;gap:.9rem;}
 .celeb-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,5vw,2.8rem);color:#fff;text-shadow:0 0 40px rgba(255,255,255,.5);animation:bounce 1s infinite;}
 @keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0);}40%{transform:translateY(-12px);}60%{transform:translateY(-6px);}}
 .celeb-msg{font-size:clamp(.88rem,2.5vw,1.05rem);color:rgba(255,255,255,.95);max-width:480px;line-height:1.6;padding:0 .5rem;}
 
+
 /* GIF */
 .gif-box{width:min(280px,75vw);height:min(280px,75vw);border-radius:20px;overflow:hidden;flex-shrink:0;animation:glow 2s infinite alternate;}
 @keyframes glow{from{box-shadow:0 20px 50px rgba(255,105,180,.5);}to{box-shadow:0 20px 70px rgba(255,20,147,.8);}}
 .gif-box img{width:100%;height:100%;object-fit:cover;display:block;}
+
 
 /* Confetti */
 .confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:20;}
 .cele-heart{position:absolute;animation:confettiUp linear infinite;}
 @keyframes confettiUp{0%{transform:translateY(100vh) rotate(0deg);opacity:1;}100%{transform:translateY(-50px) rotate(720deg);opacity:0;}}
 
+
 /* Bottom strip */
 #bottomStrip{position:absolute;bottom:0;left:0;right:0;z-index:70;padding:.9rem 1.2rem max(1rem,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:.7rem;align-items:center;}
+
 
 /* Small generate link button */
 .gen-link-btn{padding:.65em 1.8em;border:none;border-radius:50px;background:rgba(255,255,255,.92);color:var(--deep);font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:all .2s;display:inline-flex;align-items:center;gap:.4em;}
 .gen-link-btn:hover{background:#fff;transform:translateY(-1px);}
+
 
 /* Link box */
 #linkBox{display:none;background:rgba(255,255,255,.97);border-radius:16px;padding:.85rem 1rem;text-align:center;width:100%;max-width:360px;}
@@ -141,6 +155,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 .link-btns{display:flex;gap:.5rem;justify-content:center;}
 .copy-link-btn{padding:.5rem 1.1rem;background:var(--pink);color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:.85rem;flex:1;}
 .wa-btn{padding:.5rem 1.1rem;background:#25D366;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;gap:.3em;flex:1;}
+
 
 /* Pay panel — compact floating card, not full-width sheet */
 #panelOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:190;}
@@ -170,9 +185,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 .coupon-msg.ok{color:#1a8a4a;}.coupon-msg.err{color:#c0392b;}
 .pay-btn{width:100%;padding:.85rem;border:none;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--deep));color:#fff;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 5px 16px rgba(196,69,105,.45);}
 
+
 /* Burst hearts */
 .burst-heart{position:fixed;font-size:28px;z-index:400;animation:burstOut 1.5s ease-out forwards;pointer-events:none;}
 @keyframes burstOut{0%{transform:translate(0,0) scale(0);opacity:1;}100%{transform:translate(var(--tx),var(--ty)) scale(1);opacity:0;}}
+
 
 @media(max-width:480px){
   .form-card{padding:2rem 1.2rem;}
@@ -184,7 +201,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
 </head>
 <body>
 
+
 <div class="hearts-bg" id="heartsBg"></div>
+
 
 <!-- FORM PAGE -->
 <div id="formPage">
@@ -196,7 +215,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
     <p class="form-subtitle">A cute page they literally can't say no to 🌸</p>
     <div class="field">
       <label>Their Name</label>
-      <input type="text" id="theirName" placeholder="receiptent name " maxlength="40">
+      <input type="text" id="theirName" placeholder="recipient name" maxlength="40">
     </div>
     <div class="field">
       <label>Your Name</label>
@@ -230,19 +249,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--light);min-height:100vh;}
   </div>
 </div>
 
+
 <!-- EXPERIENCE PAGE -->
 <div id="expPage">
   <div class="prev-hearts-bg" id="prevHeartsBg"></div>
 
+
   <div class="watermark" id="watermarkEl">
     <span>PREVIEW · mylovepage.in · PREVIEW · mylovepage.in · PREVIEW</span>
   </div>
+
 
   <div class="top-controls">
     <button class="back-btn-prev" id="backBtnPrev" style="display:none;">← Back</button>
     <div style="flex:1"></div>
     <button class="mute-btn" id="muteBtnPrev">🔊</button>
   </div>
+
 
   <div id="expContent">
     <div id="questionScreen">
@@ -255,6 +278,7 @@ Aasthaaaa 💖</h1>
       </div>
     </div>
 
+
     <div id="celebScreen">
       <h1 class="celeb-title">Yay! I knew you'd say YES! ❤️</h1>
       <p class="celeb-msg" id="celebMsg">You're the best thing that's ever happened to me. 🌹</p>
@@ -264,6 +288,7 @@ Aasthaaaa 💖</h1>
       <div class="confetti-layer" id="confettiLayer"></div>
     </div>
   </div>
+
 
   <div id="bottomStrip">
     <button class="gen-link-btn" id="generateLinkBtn">💌 Generate Shareable Link</button>
@@ -281,8 +306,10 @@ Aasthaaaa 💖</h1>
   </div>
 </div>
 
+
 <!-- Sarcasm toast -->
 <div id="sarcasmToast"></div>
+
 
 <!-- Pay panel -->
 <div id="panelOverlay" onclick="closePayPanel()"></div>
@@ -297,9 +324,11 @@ Aasthaaaa 💖</h1>
   <button class="pay-btn" id="payBtn">Pay ₹99 & Get Link 💕</button>
 </div>
 
+
 <audio id="bgMusic" loop>
   <source src="yours.mp3" type="audio/mpeg">
 </audio>
+
 
 <script>
 // ============================================================
@@ -319,6 +348,7 @@ function spawnHeart(container){
 }
 setInterval(()=>spawnHeart(document.getElementById('heartsBg')),500);
 
+
 // ============================================================
 // FORM RADIO
 // ============================================================
@@ -331,6 +361,7 @@ document.querySelectorAll('.q-opt input[type=radio]').forEach(r=>{
     else cq.style.display='none';
   });
 });
+
 
 // ============================================================
 // SARCASM
@@ -360,6 +391,7 @@ function showSarcasm(){
   sarcasmTimer=setTimeout(()=>t.classList.remove('show'),2600);
 }
 
+
 // ============================================================
 // AUDIO
 // ============================================================
@@ -371,12 +403,14 @@ document.getElementById('muteBtnPrev').addEventListener('click',()=>{
   document.getElementById('muteBtnPrev').textContent=muted?'🔇':'🔊';
 });
 
+
 // Auto-uppercase coupon as user types
 document.getElementById('couponInput').addEventListener('input',function(){
   const pos=this.selectionStart;
   this.value=this.value.toUpperCase();
   this.setSelectionRange(pos,pos);
 });
+
 
 
 const COUPONS={
@@ -388,6 +422,7 @@ const COUPONS={
   'LOVE50': {discount:50, label:'LOVE49 — ₹50 off'}
 };
 let appliedDiscount=0, basePrice=99;
+
 
 document.getElementById('applyCoupon').addEventListener('click',()=>{
   const code=document.getElementById('couponInput').value.trim().toUpperCase();
@@ -406,62 +441,49 @@ document.getElementById('applyCoupon').addEventListener('click',()=>{
   }
 });
 
-// ============================================================
-// ENCODE / DECODE
-// ============================================================
+
 // ============================================================
 // ENCODE / DECODE (FIXED)
 // ============================================================
+
+// URL-safe Base64 encoding/decoding for safe sharing in query params
 function encodePageData(data) {
-  return btoa(
-    String.fromCharCode(
-      ...new TextEncoder().encode(
-        JSON.stringify(data)
-      )
-    )
+  const base64 = btoa(
+    String.fromCharCode(...new TextEncoder().encode(JSON.stringify(data)))
   );
+  // Make it URL-safe: replace + / = with - _ (no padding)
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
-
-
 
 function decodePageData(str) {
   try {
-    const bytes = Uint8Array.from(
-      atob(str),
-      c => c.charCodeAt(0)
-    );
+    // Restore standard Base64
+    str = str.replace(/-/g, '+').replace(/_/g, '/');
+    // Add padding if needed
+    while (str.length % 4) str += '=';
 
-    return JSON.parse(
-      new TextDecoder().decode(bytes)
-    );
-  } catch (e) {
-    try {
-      return JSON.parse(
-        decodeURIComponent(
-          escape(
-            atob(str)
-          )
-        )
-      );
-    } catch {
-      return null;
-    }
+    const bytes = Uint8Array.from(atob(str), c => c.charCodeAt(0));
+    return JSON.parse(new TextDecoder().decode(bytes));
+  } catch {
+    return null;
   }
 }
+
 
 // ============================================================
 // LAUNCH EXPERIENCE
 // ============================================================
 let isRecipientMode=false;
 
+
 function launchExperience(data, recipientMode){
   isRecipientMode=!!recipientMode;
+
 
   document.getElementById('expTitle').textContent=data.question+'\n'+data.theirName+' 💖';
   document.getElementById('expSubMsg').textContent='From: '+data.fromName+' 💌';
   document.getElementById('celebMsg').textContent=data.msg+' ~'+data.fromName;
 
-  // gif slideshow starts when Yes is clicked — nothing to set here
 
   document.getElementById('questionScreen').style.display='block';
   document.getElementById('celebScreen').style.display='none';
@@ -473,20 +495,23 @@ function launchExperience(data, recipientMode){
   const nb=document.getElementById('noBtnExp');
   nb.style.left=''; nb.style.top='';
 
+
   document.getElementById('watermarkEl').style.display=isRecipientMode?'none':'flex';
   document.getElementById('backBtnPrev').style.display=isRecipientMode?'none':'block';
   document.getElementById('generateLinkBtn').style.display=isRecipientMode?'none':'inline-flex';
 
+
   document.getElementById('formPage').style.display='none';
   document.getElementById('expPage').style.display='flex';
   bgMusic.play().catch(()=>{});
+
 
   const phb=document.getElementById('prevHeartsBg');
   phb.innerHTML='';
   setInterval(()=>spawnHeart(phb),400);
 }
 
-// ============================================================
+
 // ============================================================
 // CHECK URL ON LOAD
 // ============================================================
@@ -494,18 +519,21 @@ window.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const d = params.get('d');
 
-  console.log("URL PARAM:", d);
-
   if (d) {
     const data = decodePageData(d);
 
-    console.log("DECODED DATA:", data);
-
-    if (data) {
+    // Only launch recipient mode if data is valid and has required fields
+    if (data && data.theirName && data.fromName && data.question) {
       launchExperience(data, true);
+      return;
     }
   }
+
+  // Default: show form page
+  document.getElementById('formPage').style.display = 'flex';
+  document.getElementById('expPage').style.display = 'none';
 });
+
 
 // ============================================================
 // PREVIEW BUTTON
@@ -518,9 +546,11 @@ document.getElementById('previewBtn').addEventListener('click',()=>{
   if(question==='custom') question=document.getElementById('customQ').value.trim()||'Will you be mine?';
   const msg=document.getElementById('yourMsg').value.trim()||"You're the most amazing person I know. I love you endlessly. 💕";
 
+
   window._pageData={theirName,fromName,question,msg};
   launchExperience(window._pageData, false);
 });
+
 
 // ============================================================
 // BACK BUTTON
@@ -531,6 +561,7 @@ document.getElementById('backBtnPrev').addEventListener('click',()=>{
   bgMusic.pause(); bgMusic.currentTime=0;
   closePayPanel();
 });
+
 
 // ============================================================
 // NO BUTTON
@@ -547,6 +578,7 @@ noBtn.addEventListener('mouseenter',runNoBtn);
 noBtn.addEventListener('touchstart',(e)=>{e.preventDefault();runNoBtn();},{passive:false});
 noBtn.addEventListener('click',(e)=>{e.preventDefault();runNoBtn();});
 
+
 // ============================================================
 // YES BUTTON
 // ============================================================
@@ -556,6 +588,7 @@ document.getElementById('yesBtnExp').addEventListener('click',()=>{
   cs.style.display='flex'; cs.style.flexDirection='column'; cs.style.alignItems='center';
   buildConfetti();
 });
+
 
 // ============================================================
 // CONFETTI
@@ -576,6 +609,7 @@ function buildConfetti(){
   }
 }
 
+
 // ============================================================
 // GENERATE LINK → pay panel
 // ============================================================
@@ -589,41 +623,74 @@ function closePayPanel(){
   document.getElementById('payPanel').style.display='none';
 }
 
+
 // ============================================================
 // PAY
 // ============================================================
+// NOTE: This is a frontend-only demo. For production, you should:
+// 1. Create Razorpay orders on your backend.
+// 2. Verify payment signatures and status on your backend.
+// 3. Only then generate & return the shareable link or token.
 document.getElementById('payBtn').addEventListener('click',()=>{
   const finalAmount=Math.max(0,basePrice-appliedDiscount);
-  if(finalAmount===0){onPaymentSuccess('FREE_'+Date.now());return;}
+  if(finalAmount===0){
+    onPaymentSuccess('FREE_'+Date.now());
+    return;
+  }
+
   const fromName=(window._pageData&&window._pageData.fromName)||'Someone';
   const theirNameVal=(window._pageData&&window._pageData.theirName)||'Someone';
+
   const options={
     key:'rzp_live_SmizRaPApu81ZS',
-    amount:finalAmount*100,currency:'INR',
+    amount:finalAmount*100,
+    currency:'INR',
     name:'mylovepage.in',
     description:'Love Page for '+theirNameVal,
     image:'https://media.tenor.com/WgMTMBNaEEoAAAAi/panda-heart.gif',
-    handler:function(response){onPaymentSuccess(response.razorpay_payment_id);},
+    handler:function(response){
+      // In production, send these to your backend for verification:
+      // - response.razorpay_payment_id
+      // - response.razorpay_order_id (if you use orders)
+      // - response.razorpay_signature
+      onPaymentSuccess(response.razorpay_payment_id);
+    },
     prefill:{name:fromName,email:'',contact:''},
     theme:{color:'#ff6b9d'},
-    modal:{ondismiss:function(){}}
+    modal:{
+      ondismiss:function(){
+        // Payment cancelled
+      }
+    }
   };
   new Razorpay(options).open();
 });
 
+
 function onPaymentSuccess(paymentId){
   closePayPanel();
-  const data=window._pageData||{theirName:'someone',fromName:'someone',question:'Will you be mine?',msg:'I love you 💕'};
-  const encoded=encodePageData(data);
-  const link=window.location.origin+window.location.pathname+'?d='+encoded;
+
+  const data = window._pageData || {
+    theirName:'someone',
+    fromName:'someone',
+    question:'Will you be mine?',
+    msg:'I love you 💕'
+  };
+
+  // Encode data safely and create a shareable link
+  const encoded = encodePageData(data);
+  // Use encodeURIComponent for extra safety, though URL-safe Base64 is usually enough
+  const link = `${window.location.origin}${window.location.pathname}?d=${encodeURIComponent(encoded)}`;
 
   document.getElementById('generateLinkBtn').style.display='none';
   const lb=document.getElementById('linkBox');
   lb.style.display='block';
   document.getElementById('linkUrl').textContent=link;
 
-  burstConfetti(); setTimeout(burstConfetti,500);
+  burstConfetti();
+  setTimeout(burstConfetti, 500);
 }
+
 
 function burstConfetti(){
   const emojis=['❤️','💖','✨','🌟','💕','🎉','🌸'];
@@ -642,6 +709,7 @@ function burstConfetti(){
   }
 }
 
+
 // ============================================================
 // WHATSAPP SHARE
 // ============================================================
@@ -652,6 +720,7 @@ document.getElementById('waShareBtn').addEventListener('click',()=>{
   window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
 });
 
+
 // ============================================================
 // COPY LINK
 // ============================================================
@@ -659,14 +728,26 @@ document.getElementById('copyLinkBtn').addEventListener('click',()=>{
   const url=document.getElementById('linkUrl').textContent;
   const btn=document.getElementById('copyLinkBtn');
   navigator.clipboard.writeText(url).then(()=>{
-    btn.textContent='Copied! ✓'; setTimeout(()=>{btn.textContent='Copy 📋';},2000);
+    btn.textContent='Copied! ✓';
+    setTimeout(()=>{btn.textContent='Copy 📋';},2000);
   }).catch(()=>{
     const ta=document.createElement('textarea');
-    ta.value=url; document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); document.body.removeChild(ta);
-    btn.textContent='Copied! ✓'; setTimeout(()=>{btn.textContent='Copy 📋';},2000);
+    ta.value=url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent='Copied! ✓';
+    setTimeout(()=>{btn.textContent='Copy 📋';},2000);
   });
 });
 </script>
 </body>
 </html>
+</file>
+
+<share_files>
+<files>
+["mylovepage-fixed.html"]
+</files>
+</share_files>
