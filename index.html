@@ -414,25 +414,36 @@ document.getElementById('applyCoupon').addEventListener('click',()=>{
 // ============================================================
 function encodePageData(data) {
   return btoa(
-    encodeURIComponent(
-      JSON.stringify(data)
+    String.fromCharCode(
+      ...new TextEncoder().encode(
+        JSON.stringify(data)
+      )
     )
   );
 }
 
 function decodePageData(str) {
   try {
+    const bytes = Uint8Array.from(
+      atob(str),
+      c => c.charCodeAt(0)
+    );
+
     return JSON.parse(
-      decodeURIComponent(
-        escape(
-          atob(str)
-        )
-      )
+      new TextDecoder().decode(bytes)
     );
   } catch (e) {
-    alert("DECODE ERROR: " + e.message);
-    console.error(e);
-    return null;
+    try {
+      return JSON.parse(
+        decodeURIComponent(
+          escape(
+            atob(str)
+          )
+        )
+      );
+    } catch {
+      return null;
+    }
   }
 }
 
