@@ -409,14 +409,25 @@ document.getElementById('applyCoupon').addEventListener('click',()=>{
 // ============================================================
 // ENCODE / DECODE
 // ============================================================
-function encodePageData(data){
-  return btoa(JSON.stringify(data));
+// ============================================================
+// ENCODE / DECODE (FIXED)
+// ============================================================
+function encodePageData(data) {
+  return btoa(
+    encodeURIComponent(
+      JSON.stringify(data)
+    )
+  );
 }
 
-function decodePageData(str){
-  try{
-    return JSON.parse(atob(str));
-  }catch(e){
+function decodePageData(str) {
+  try {
+    return JSON.parse(
+      decodeURIComponent(
+        atob(str)
+      )
+    );
+  } catch (e) {
     console.error("Decode failed:", e);
     return null;
   }
