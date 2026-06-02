@@ -458,11 +458,20 @@ function launchExperience(data, recipientMode){
 // CHECK URL ON LOAD
 // ============================================================
 window.addEventListener('DOMContentLoaded',()=>{
-  const params=new URLSearchParams(window.location.search);
-  const d=params.get('d');
+  const params = new URLSearchParams(window.location.search);
+
+  const d = params.get('d');
+
+  alert("D = " + (d ? "FOUND" : "NOT FOUND"));
+
   if(d){
-    const data=decodePageData(d);
-    if(data) launchExperience(data, true);
+    const data = decodePageData(d);
+
+    alert(JSON.stringify(data));
+
+    if(data){
+      launchExperience(data,true);
+    }
   }
 });
 
