@@ -424,11 +424,14 @@ function decodePageData(str) {
   try {
     return JSON.parse(
       decodeURIComponent(
-        atob(str)
+        escape(
+          atob(str)
+        )
       )
     );
   } catch (e) {
-    console.error("Decode failed:", e);
+    alert("DECODE ERROR: " + e.message);
+    console.error(e);
     return null;
   }
 }
