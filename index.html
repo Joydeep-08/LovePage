@@ -410,11 +410,16 @@ document.getElementById('applyCoupon').addEventListener('click',()=>{
 // ENCODE / DECODE
 // ============================================================
 function encodePageData(data){
-  return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+  return btoa(JSON.stringify(data));
 }
+
 function decodePageData(str){
-  try{ return JSON.parse(decodeURIComponent(escape(atob(str)))); }
-  catch(e){ return null; }
+  try{
+    return JSON.parse(atob(str));
+  }catch(e){
+    console.error("Decode failed:", e);
+    return null;
+  }
 }
 
 // ============================================================
