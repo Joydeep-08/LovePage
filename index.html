@@ -487,22 +487,22 @@ function launchExperience(data, recipientMode){
 }
 
 // ============================================================
+// ============================================================
 // CHECK URL ON LOAD
 // ============================================================
-window.addEventListener('DOMContentLoaded',()=>{
+window.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
-
   const d = params.get('d');
 
-  alert("D = " + (d ? "FOUND" : "NOT FOUND"));
+  console.log("URL PARAM:", d);
 
-  if(d){
+  if (d) {
     const data = decodePageData(d);
 
-    alert(JSON.stringify(data));
+    console.log("DECODED DATA:", data);
 
-    if(data){
-      launchExperience(data,true);
+    if (data) {
+      launchExperience(data, true);
     }
   }
 });
