@@ -403,13 +403,13 @@ Aastha 💖</h1>
   <div id="panelOverlay"></div>
   <div id="payPanel">
     <button class="panel-close" id="panelCloseBtn">✕</button>
-    <p class="panel-title">💌 Unlock & Share — ₹99</p>
+    <p class="panel-title">💌 Unlock & Share — ₹79</p>
     <div class="pay-row">
       <input type="text" class="coupon-input" id="couponInput" placeholder="Coupon code (optional)" autocapitalize="characters" autocomplete="off" spellcheck="false">
       <button class="apply-btn" id="applyCoupon">Apply</button>
     </div>
     <p class="coupon-msg" id="couponMsg"></p>
-    <button class="pay-btn" id="payBtn">Pay ₹99 & Get Link 💕</button>
+    <button class="pay-btn" id="payBtn">Pay ₹79 & Get Link 💕</button>
   </div>
 
   <audio id="bgMusic" loop>
@@ -437,7 +437,7 @@ Aastha 💖</h1>
 
     const COUPONS = {
       LOVE20: { discount:20, label:'LOVE20 — ₹20 off' },
-      FEIN:   { discount:99, label:"FREE — it's on us! 💕" },
+      FEIN:   { discount:79, label:"FREE — it's on us! 💕" },
       UMM1:   { discount:98, label:'RS1 — just ₹1! 🥺' },
       LOVE:   { discount:20, label:'RS79 — ₹20 off' },
       LOVE50: { discount:50, label:'LOVE49 — ₹50 off' }
@@ -462,7 +462,7 @@ Aastha 💖</h1>
     let sarcasmIdx = 0;
     let sarcasmTimer = null;
     let appliedDiscount = 0;
-    let basePrice = 99;
+    let basePrice = 79;
     let isRecipientMode = false;
     let previewHeartInterval = null;
 
@@ -536,12 +536,12 @@ Aastha 💖</h1>
         appliedDiscount = 0;
         msg.textContent = '';
         msg.className = 'coupon-msg';
-        payBtn.textContent = 'Pay ₹99 & Get Link 💕';
+        payBtn.textContent = 'Pay ₹79 & Get Link 💕';
       } else {
         appliedDiscount = 0;
         msg.textContent = '✗ Invalid coupon';
         msg.className = 'coupon-msg err';
-        payBtn.textContent = 'Pay ₹99 & Get Link 💕';
+        payBtn.textContent = 'Pay ₹79 & Get Link 💕';
       }
     });
 
@@ -589,7 +589,7 @@ Aastha 💖</h1>
       document.getElementById('couponMsg').textContent = '';
       document.getElementById('couponMsg').className = 'coupon-msg';
       document.getElementById('couponInput').value = '';
-      document.getElementById('payBtn').textContent = 'Pay ₹99 & Get Link 💕';
+      document.getElementById('payBtn').textContent = 'Pay ₹79 & Get Link 💕';
       appliedDiscount = 0;
       sarcasmIdx = 0;
       noBtn.style.left = '';
